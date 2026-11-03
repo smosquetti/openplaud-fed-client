@@ -1,0 +1,20 @@
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 5rem;
+}
+
+.page h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.page .lead {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "openplaud-fed-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:bubble": "node scripts/build-bubble.mjs",
+    "dev": "node scripts/build-bubble.mjs && next dev",
+    "build": "node scripts/build-bubble.mjs && next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "bootstrap": "5.3.8",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "strophe.js": "5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.4.3",
+    "typescript": "^5"
+  }
+}

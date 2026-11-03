@@ -1,0 +1,17 @@
+## openplaud-fed-client
+
+React, Next.js and Strophe.js
+
+Customer side of the OpenPlaud Platform, a chat bubble created to be embedded into any website, 
+the customer provides their name and the Operator Group the customer will be assisted by (if it isn't set in the chat bubble config
+the customer can select which Operator Group they want to connect to).
+
+After submitting the initial form, Name and Operator Group (if needed), a random UUID will be generated for the creating of the
+customer's ejabberd temporary account and the client will call the OpenPlaud Admin public API in order to create a temporary MUC room.
+
+Upon sending the first message to the MUC room the chat will be visible on the Operator's side.
+
+This application should have two test pages with the chat bubble embedded in, one should have a pre-configured Operator Group (18c4c671-9ced-454b-b7ce-a5eb333b331e)
+and the other should let the customer select the Operator Group from a drop-down list.
+
+The strophe-test folder has scripts created to test the Operator side, some of which simulate the Customer's side.
