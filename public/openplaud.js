@@ -306,7 +306,7 @@
 .opcb-composer { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e2e8f0; background: #fff; flex-shrink: 0; }
 .opcb-composer .opcb-input { flex: 1; }
 .opcb-end { align-self: center; color: #4f46e5; font-size: 12px; text-decoration: underline; cursor: pointer; background: none; border: 0; padding: 4px; flex-shrink: 0; }
-.opcb-scroll { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; overflow-y: auto; padding-right: 12px; }
+.opcb-scroll { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; overflow-y: auto; padding-right: 16px; }
 .opcb-scroll > .opcb-hint { margin-top: auto; }
 `;
 
