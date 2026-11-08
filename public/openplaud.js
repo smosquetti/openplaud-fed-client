@@ -591,7 +591,6 @@
       return;
     }
     if (p === 'connected') {
-      client.sendPresence();
       client.joinRoom(state.session.roomJid, state.name);
       const was = state.session.started;
       state.session.started = true;
@@ -624,10 +623,10 @@
   }
 
   function handleOccupant(nick, available) {
-    if (nick === state.name) return;
+    if (!nick || nick === state.name) return;
     if (!state.session || !state.session.started) return;
-    if (available) appendMessage('sys', (nick || 'A support agent') + ' joined the conversation.');
-    else appendMessage('sys', (nick || 'A support agent') + ' left the conversation.');
+    if (available) appendMessage('sys', nick + ' joined the conversation.');
+    else appendMessage('sys', nick + ' left the conversation.');
   }
 
   function sendMessage() {
