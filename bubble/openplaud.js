@@ -265,7 +265,8 @@
 .opcb-brand { font-weight: 600; font-size: 14px; }
 .opcb-sub { font-size: 12px; opacity: .85; }
 .opcb-header .spacer { flex: 1; }
-.opcb-status { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.opcb-status { display: flex; align-items: center; gap: 6px; font-size: 12px; justify-content: space-between;}
+.opcb-status-container { display: flex; align-items: center; gap: 6px; font-size: 12px;}
 .opcb-dot { width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; }
 .opcb-dot.ok { background: #22c55e; }
 .opcb-dot.warn { background: #f59e0b; }
@@ -312,18 +313,18 @@
   const panel = el('div', 'opcb-panel');
   panel.hidden = true;
   const header = el('div', 'opcb-header');
+  const statusContainer = el('div', 'opcb-status-container');
+  const dot = el('span', 'opcb-dot');
+  dot.title = "Not connected"
   const brand = el('div');
   const brandTop = el('div', 'opcb-brand', 'OpenPlaud');
-  brand.appendChild(brandTop);
+  statusContainer.appendChild(dot);
+  statusContainer.appendChild(brandTop);
+  brand.appendChild(statusContainer);
+
   const sub = el('div', 'opcb-sub');
   brand.appendChild(sub);
   header.appendChild(brand);
-  const statusBox = el('div', 'opcb-status');
-  const dot = el('span', 'opcb-dot');
-  statusBox.appendChild(dot);
-  const statusText = el('span', '', 'Support');
-  statusBox.appendChild(statusText);
-  header.appendChild(statusBox);
   header.appendChild(el('div', 'spacer'));
   const closeBtn = el('button', 'opcb-close', '\u00d7');
   closeBtn.type = 'button';
@@ -355,9 +356,11 @@
     scrollNode.appendChild(msgsNode);
     body.appendChild(scrollNode);
     body.appendChild(composerWrap);
+
     const endBtn = el('button', 'opcb-end', 'End chat');
     endBtn.type = 'button';
     endBtn.addEventListener('click', endChat);
+
     body.appendChild(endBtn);
   }
 
@@ -576,7 +579,7 @@
     if (p === 'connecting') {
       setView('starting');
       setDot('');
-      statusText.textContent = 'Connecting…';
+      dot.title = 'Connecting…';
       return;
     }
     if (p === 'connected') {
@@ -585,13 +588,13 @@
       state.session.started = true;
       setView('chat');
       setDot('ok');
-      statusText.textContent = 'Connected';
+      dot.title = 'Connected';
       if (was) appendMessage('sys', 'Reconnected to support.');
       return;
     }
     if (p === 'reconnecting') {
       setDot('warn');
-      statusText.textContent = 'Reconnecting…';
+      dot.title = 'Reconnecting…'
       if (state.session.started) {
         setView('chat');
       }
@@ -600,7 +603,7 @@
     if (p === 'failed') {
       state.session = null;
       setDot('err');
-      statusText.textContent = 'Offline';
+      dot.title = 'Offline';
       state.errorText = 'We could not connect to support. Please try again.';
       setView('error');
     }
@@ -640,7 +643,7 @@
     }
     state.session = null;
     setDot('');
-    statusText.textContent = 'Support';
+    dot.title = 'Not connected';
     setView('intro');
   }
 
